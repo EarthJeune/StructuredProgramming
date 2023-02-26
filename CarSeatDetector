@@ -1,0 +1,153 @@
+using System;
+
+namespace Layola
+{
+class CarSeatDetector
+{
+static void Main(string[] args)
+{
+string choice, gender;
+
+
+ShowMainMenu();
+        gender = Console.ReadLine();
+
+        if (gender == "F" || gender == "f")
+        {
+            Console.WriteLine("Are You Pregnant (Yes/No): \n");
+            choice = Console.ReadLine();
+
+            if (choice == "Yes" || choice == "yes" || choice == "YES")
+            {
+                Console.WriteLine("Sorry Maam, as an expectant mother you cannot ride in the front seat.");
+            }
+            else if (choice == "No" || choice == "no" || choice == "NO")
+            {
+                Console.WriteLine("What is your height in cm?: \n");
+                int cm1 = HeightLimitation();
+
+                if (cm1 <= 149.86)
+                {
+                    Console.WriteLine("Sorry Maam, due to height limitation you cannot ride in the front seat");
+                }
+                else
+                {
+                    Console.WriteLine("What is your age? \n");
+                    int age1 = AgeLimitation();
+
+                    if (age1 <= 13)
+                    {
+                        Console.WriteLine("Sorry Maam, due to age limitation you cannot ride in the front seat");
+                    }
+                    else if (ReserveFrontSeat())
+                        {
+                            Console.WriteLine("You are reserved in the front seat.");
+                        }
+                    else
+                    {
+                        ReserveCarSeat();
+                    }
+                }
+            }
+        }
+        else if (gender == "M" || gender == "m")
+        {
+            Console.WriteLine("Do you have an infant (Yes/No): \n");
+            choice = Console.ReadLine();
+
+            if (choice == "Yes" || choice == "yes" || choice == "YES")
+            {
+                Console.WriteLine("Sorry Sir, for the infant's safety you cannot ride in the front seat.");
+            }
+            else if (choice == "No" || choice == "no" || choice == "NO")
+            {
+                Console.WriteLine("What is your height in cm?: \n");
+                int cm1 = HeightLimitation();
+
+                if (cm1 <= 149.86)
+                {
+                    Console.WriteLine("Sorry Sir, due to height limitation you cannot ride in the front seat.");
+                }
+                else
+                {
+                    Console.WriteLine("What is your age? \n");
+                    int age1 = AgeLimitation();
+
+                    if (age1 <= 13)
+                    {
+                        Console.WriteLine("Sorry Sir, due to age limitation you cannot ride in the front seat");
+                    }
+                    else if (ReserveFrontSeat())
+                        {
+                            Console.WriteLine("You are reserved in the front seat.");
+                        }
+                    else
+                    {
+                        ReserveCarSeat();
+                    }
+                }
+            }
+        }
+    }
+
+    static void ShowMainMenu()
+    {
+        Console.WriteLine("Car Seat Detector \n");
+        Console.WriteLine("Enter your gender(M/m or F/f) \n");
+    }
+
+    static int HeightLimitation()
+    {
+        int cm = Convert.ToInt32(Console.ReadLine());
+        return cm;
+    }
+
+    static int AgeLimitation()
+    {
+        int age = Convert.ToInt32(Console.ReadLine());
+        return age;
+    }
+    static bool ReserveFrontSeat()
+        {
+            Console.WriteLine("Do you want to reserve the front seat? (Yes/No): \n");
+            string choice = Console.ReadLine();
+
+            if (choice == "Yes" || choice == "yes" || choice == "YES")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+    static void ReserveCarSeat()
+    {
+        const int MAX_SEATS = 3;
+        int numReserved = 0;
+         while (numReserved < MAX_SEATS)
+            {
+        Console.WriteLine($"There are {MAX_SEATS - numReserved} seats available.");
+        Console.WriteLine("Do you want to reserve in the back seat? (Yes/No): \n");
+        string choice = Console.ReadLine();
+
+        if (choice == "Yes" || choice == "yes" || choice == "YES")
+        {
+             numReserved++;
+            Console.WriteLine($"Seat {numReserved} reserved.");
+           
+        }
+        else
+        {
+            Console.WriteLine("Seat not reserved.");
+            break;
+        }
+    }
+     if (numReserved == MAX_SEATS)
+            {
+                Console.WriteLine("All seats have been reserved.");
+            }
+}
+}
+}
